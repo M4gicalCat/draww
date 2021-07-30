@@ -27,3 +27,14 @@ square.accelerationX = 0.05;
 Don't forget to **always** use the getters / setters to be sure that the shapes changes as intended.
 
 Have fun !
+
+
+All shapes are : 
+- Circle
+- Ellipse
+- Picture
+- Rect
+- Square
+- Triangle
+
+All colors are css ones, you can change it with hexa, don't forget the `#` before !
