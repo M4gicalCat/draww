@@ -16,10 +16,12 @@ class Shape
         this._div = div;
         this._rotation = 0;
         this._glow = false;
-        this._moveX = function (){};
-        this._moveY = function (){};
+        this._moveX = function (){this.x = this.x};
+        this._moveY = function (){this.y = this.y};
         this._move = true;
         this._visible = true;
+        this._accelerationY = 0;
+        this._accelerationX = 0;
 
         div.style.position = "absolute";
         div.style.left = "+"+x+"px";
@@ -138,12 +140,14 @@ class Shape
     }
 
     /**
+     * The function that makes the current Shape move every frame of its Canvas. (ex: this.x = this.x\*\*2 + (this.x\*\*2)\*this.accelerationX )
      * @param f : function
      */
     set moveX(f){
         this._moveX = f;
     }
     /**
+     * The function that makes the current Shape move every frame of its Canvas. (ex: this.y = this.y\*\*2 + (this.y\*\*2)\*this.accelerationY)
      * @param f : function
      */
     set moveY(f){
@@ -200,5 +204,25 @@ class Shape
      */
     set move(value){
         this._move = value;
+    }
+    get accelerationY(){
+        return this._accelerationY;
+    }
+
+    /**
+     * @param value : number
+     */
+    set accelerationY(value){
+        this._accelerationY = value;
+    }
+    get accelerationX(){
+        return this._accelerationX;
+    }
+
+    /**
+     * @param value : number
+     */
+    set accelerationX(value){
+        this._accelerationX = value;
     }
 }

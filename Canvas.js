@@ -1,5 +1,9 @@
 class Canvas{
-    constructor(/*int*/width, /*int*/height)
+    /**
+     * @param width : number
+     * @param height : number
+     */
+    constructor(width,height)
     {
         let div = document.createElement("div");
         let nb = 0;
@@ -13,9 +17,10 @@ class Canvas{
         this._shapes = [];
         this._animated = false;
         this._anim = 0;
-        this._interval = 100;
-        this._fps = 10;
+        this._interval = 40;
+        this._fps = 25
         this._frame = 0
+        this._gravity = 0;
 
 
         div.style.position="relative";
@@ -23,7 +28,6 @@ class Canvas{
         div.style.height = height+"px";
         div.id = "canvas_"+nb;
         document.body.appendChild(div);
-
     }
 
     get width() {
@@ -73,6 +77,7 @@ class Canvas{
                     if (that.shapes[i].move){
                         that.shapes[i]._moveX();
                         that.shapes[i]._moveY();
+                        that.shapes[i].accelerationY += that.gravity;
                     }
                 }
                 that._frame += 1;
@@ -107,10 +112,23 @@ class Canvas{
     set fps(value){
         this._fps = value
         this._interval = Math.round(1000/value)
-        this.animated = false
-        this.animated = true
+        if (this.animated){
+            this.animated = false
+            this.animated = true
+        }
     }
     get frame(){
         return this._frame;
+    }
+    get gravity(){
+        return this._gravity;
+    }
+
+    /**
+     * Generates gravity towards the bottom of the current Canvas. Works only if this.animated is true.
+     * @param value : number
+     */
+    set gravity(value){
+        this._gravity = value;
     }
 }
