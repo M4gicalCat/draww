@@ -30,17 +30,11 @@ class Shape
         div.style.height = height+"px";
     }
 
-    set canvas(value)
-    {
-        this._canvas = value;
-        return this;
-    }
     get canvas(){
         return this._canvas;
     }
 
-    get div()
-    {
+    get div() {
         return this._div;
     }
 
@@ -48,38 +42,47 @@ class Shape
         return this._x;
     }
 
+    /**
+     * @param value : number
+     */
     set x(value) {
         value = Math.round(value)
         this._x = value;
         this.div.style.left = (value >= 0 ?"+":"-")+value+"px";
-        return this;
     }
 
     get y() {
         return this._y;
     }
 
+    /**
+     * @param value : number
+     */
     set y(value) {
         value = Math.round(value)
         this._y = value;
         this.div.style.top = (value >= 0 ?"+":"-")+value+"px";
-        return this;
     }
 
     get color() {
         return this._color;
     }
 
+    /**
+     * @param value : string
+     */
     set color(value) {
         this._color = value;
         this.div.style.background = value;
-        return this;
     }
 
     get width() {
         return this._width;
     }
 
+    /**
+     * @param value : number
+     */
     set width(value) {
         this._width = value;
         this.div.style.width = value+"px";
@@ -90,6 +93,9 @@ class Shape
         return this._height;
     }
 
+    /**
+     * @param value : number
+     */
     set height(value) {
         this._height = value;
         this.div.style.height = value+"px";
@@ -99,36 +105,61 @@ class Shape
     get border(){
         return this._border;
     }
+
+    /**
+     * changes the color of the border
+     * @param value : string
+     */
     set border(value){
         this._border = value;
         this.div.style.borderColor = value;
-        return this;
     }
     get rotation(){
         return this._rotation;
     }
+
+    /**
+     * Rotates the current Shape of the given number (in degrees)
+     * @param value : number
+     */
     rotate(value){
         this._rotation = value;
         this.div.style.transform = "rotate("+value+"deg)";
     }
+
+    /**
+     * @param value : boolean
+     */
     set glow(value){
         this._glow = value;
     }
     get glow(){
         return this._glow
     }
+
+    /**
+     * @param f : function
+     */
     set moveX(f){
         this._moveX = f;
     }
+    /**
+     * @param f : function
+     */
     set moveY(f){
         this._moveY = f;
     }
+
     get moveX(){
         return this._moveX;
     }
     get moveY(){
         return this._moveY;
     }
+
+    /**
+     * @param value : boolean
+     */
     set visible(value){
         if(value){
             this.div.style.display = "inline"
@@ -137,18 +168,37 @@ class Shape
             this.div.style.display = "none"
         }
     }
+
+    /**
+     * @param value : number
+     */
     set border_width(value){
-        this._border_width = value
-        this.div.style.borderWidth = value+"px"
+        this._border_width = Math.round(value)
+        this.div.style.borderWidth = Math.round(value)+"px"
     }
     get border_width(){
         return this._border_width
     }
+
+    /**
+     * changes the style of the border (css styles only)
+     * @param value : string
+     */
     set border_style(value){
         this._border_style = value;
         this.div.style.borderStyle = value;
     }
     get border_style(){
         return this._border_style
+    }
+    get move(){
+        return this._move;
+    }
+
+    /**
+     * @param value : boolean
+     */
+    set move(value){
+        this._move = value;
     }
 }

@@ -4,6 +4,9 @@ class Circle extends Ellipse{
         this.div.style.borderRadius = "50%";
     }
 
+    /**
+     * @param value : number
+     */
     set width(value)
     {
         this._width = value;
@@ -11,6 +14,9 @@ class Circle extends Ellipse{
         this.div.style.width = value+"px";
         this.div.style.height = value+"px";
     }
+    /**
+     * @param value : number
+     */
     set height(value)
     {
         this._width = value;

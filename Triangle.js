@@ -10,6 +10,9 @@ class Triangle extends Shape{
         this.div.style.background = "transparent";
     }
 
+    /**
+     * @param value : string
+     */
     set color(value){
         this._color = value;
         this.div.style.borderBottomColor = value;
