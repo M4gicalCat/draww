@@ -95,7 +95,7 @@ class Canvas{
      * Makes the shape appear on the screen, in the current Canvas.
      * @param shape : Shape
      */
-    appendForme(shape) {
+    appendShape(shape) {
         console.log(this)
         this._shapes.push(shape);
         shape._canvas = this;
