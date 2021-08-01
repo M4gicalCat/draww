@@ -1,0 +1,19 @@
+{
+  "name": "draww",
+  "version": "1.1.1",
+  "description": "An easy way to create basics shapes in web.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M4gicalCat/draww.git"
+  },
+  "author": "M4gicalCat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/M4gicalCat/draww/issues"
+  },
+  "homepage": "https://github.com/M4gicalCat/draww#readme"
+}
