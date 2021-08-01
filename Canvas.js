@@ -21,6 +21,7 @@ class Canvas{
         this._fps = 25
         this._frame = 0
         this._gravity = 0;
+        this._function_to_animate = function (){}
 
 
         div.style.position="relative";
@@ -37,6 +38,8 @@ class Canvas{
      * @param value : number
      */
     set width(value) {
+        if(isNaN(value))
+            return
         this._width = value;
         this._div.style.width = value + "px";
     }
@@ -47,6 +50,8 @@ class Canvas{
      * @param value : number
      */
     set height(value) {
+        if (isNaN(value))
+            return
         this._height = value;
         this._div.style.height = value + "px";
     }
@@ -80,6 +85,7 @@ class Canvas{
                         that.shapes[i].accelerationY += that.gravity;
                     }
                 }
+                that.function_to_animate()
                 that._frame += 1;
             }, this._interval);
         }
@@ -96,11 +102,9 @@ class Canvas{
      * @param shape : Shape
      */
     appendShape(shape) {
-        console.log(this)
         this._shapes.push(shape);
         shape._canvas = this;
         this._div.appendChild(shape.div);
-        console.log(this.shapes);
     }
     get fps(){
         return this._fps;
@@ -110,12 +114,18 @@ class Canvas{
      * @param value : number
      */
     set fps(value){
+        if (isNaN(value) || value < 0 || value > 1000)
+            return
+        if (value === 0)
+        {
+            this.animated = false
+            return
+        }
         this._fps = value
         this._interval = Math.round(1000/value)
-        if (this.animated){
-            this.animated = false
-            this.animated = true
-        }
+        this.animated = false
+        this.animated = true
+
     }
     get frame(){
         return this._frame;
@@ -129,6 +139,18 @@ class Canvas{
      * @param value : number
      */
     set gravity(value){
+        if(isNaN(value))
+            return
         this._gravity = value;
+    }
+    get function_to_animate(){
+        return this._function_to_animate;
+    }
+
+    /**
+     * @param value : function
+     */
+    set function_to_animate(value){
+        this._function_to_animate = value;
     }
 }

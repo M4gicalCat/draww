@@ -7,6 +7,8 @@ class Square extends Rect{
      * @param value : number
      */
     set width(value){
+        if(isNaN(value))
+            return
         this._width = value;
         this._height = value;
         this.div.style.width = value+"px";
@@ -17,6 +19,8 @@ class Square extends Rect{
      * @param value : number
      */
     set height(value){
+        if(isNaN(value))
+            return
         this._width = value;
         this._height = value;
         this.div.style.width = value+"px";

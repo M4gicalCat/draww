@@ -9,6 +9,8 @@ class Circle extends Ellipse{
      */
     set width(value)
     {
+        if (isNaN(value))
+            return
         this._width = value;
         this._height = value;
         this.div.style.width = value+"px";
@@ -19,9 +21,17 @@ class Circle extends Ellipse{
      */
     set height(value)
     {
+        if(isNaN(value))
+            return
         this._width = value;
         this._height = value;
         this.div.style.width = value+"px";
         this.div.style.height = value+"px";
+    }
+    get height(){
+        return this._height;
+    }
+    get width(){
+        return this._width
     }
 }

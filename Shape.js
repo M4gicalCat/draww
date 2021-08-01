@@ -1,6 +1,6 @@
 class Shape
 {
-    constructor(/*int*/x, /*int*/y, /*string*/color, /*int*/width, /*int*/height)
+    constructor(/*number*/x, /*number*/y, /*string*/color, /*number*/width, /*number*/height)
     {
         let div = document.createElement("div");
 
@@ -8,7 +8,7 @@ class Shape
         this._y = y;
         this._color = color;
         this._border = color;
-        this._border_width = 0
+        this._border_width = 1
         this._border_style = "solid";
         this._width = width;
         this._height = height;
@@ -48,6 +48,8 @@ class Shape
      * @param value : number
      */
     set x(value) {
+        if(isNaN(value))
+            return
         value = Math.round(value)
         this._x = value;
         this.div.style.left = (value >= 0 ?"+":"-")+value+"px";
@@ -61,6 +63,8 @@ class Shape
      * @param value : number
      */
     set y(value) {
+        if(isNaN(value))
+            return
         value = Math.round(value)
         this._y = value;
         this.div.style.top = (value >= 0 ?"+":"-")+value+"px";
@@ -99,6 +103,8 @@ class Shape
      * @param value : number
      */
     set height(value) {
+        if(isNaN(value))
+            return
         this._height = value;
         this.div.style.height = value+"px";
         return this;
@@ -125,6 +131,8 @@ class Shape
      * @param value : number
      */
     rotate(value){
+        if(isNaN(value))
+            return
         this._rotation = value;
         this.div.style.transform = "rotate("+value+"deg)";
     }
@@ -177,6 +185,8 @@ class Shape
      * @param value : number
      */
     set border_width(value){
+        if(isNaN(value))
+            return
         this._border_width = Math.round(value)
         this.div.style.borderWidth = Math.round(value)+"px"
     }
@@ -213,6 +223,8 @@ class Shape
      * @param value : number
      */
     set accelerationY(value){
+        if(isNaN(value))
+            return
         this._accelerationY = value;
     }
     get accelerationX(){
@@ -223,6 +235,20 @@ class Shape
      * @param value : number
      */
     set accelerationX(value){
+        if(isNaN(value))
+            return
         this._accelerationX = value;
+    }
+
+    /**
+     * Returns true if the current Shape touches the given Shape
+     * @param shape : Shape
+     * @return boolean
+     */
+    touch(shape){
+        if(this === shape)
+            return true;
+
+        return ((this.x + this.width) >= (shape.x) &&  (this.x) <= (shape.x + shape.width) && (this.y + this.height) >= (shape.y) && (this.y) <= (shape.y + shape.height))
     }
 }

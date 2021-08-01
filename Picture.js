@@ -28,6 +28,8 @@ class Picture extends Shape{
      * @param value : number
      */
     set width(value){
+        if(isNaN(value))
+            return
         this._width = value;
         this._image.width = value
         this.div.style.width = value;
@@ -37,6 +39,8 @@ class Picture extends Shape{
      * @param value : number
      */
     set height(value){
+        if(isNaN(value))
+            return
         this._height = value;
         this._image.height = value
         this.div.style.height = value;
