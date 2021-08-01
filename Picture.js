@@ -45,4 +45,11 @@ class Picture extends Shape{
         this._image.height = value
         this.div.style.height = value;
     }
+    get width(){
+        return this._width;
+    }
+    get height(){
+        return this._height;
+    }
+
 }

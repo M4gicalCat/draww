@@ -16,14 +16,14 @@ class Digit extends Shape{
     constructor(x, y, color, width, height, number) {
         super(x, y, color, width, height);
         this._number = number
-        this._group = new Group(this.x, this.y);
-        this._bar_top_left = new Group(this.x, this.y + 30);
-        this._bar_top_right = new Group(this.x + 220, this.y + 30);
-        this._bar_bottom_left = new Group(this.x, this.y + 250);
-        this._bar_bottom_right = new Group(this.x + 220, this.y + 250);
-        this._bar_top_middle = new Group(this.x + 230, this.y);
-        this._bar_middle_middle = new Group(this.x + 230, this.y+220);
-        this._bar_bottom_middle = new Group(this.x + 230, this.y+440);
+        this._group = new Group(0, 0);
+        this._bar_top_left = new Group(0,30);
+        this._bar_top_right = new Group(220,30);
+        this._bar_bottom_left = new Group(0, 250);
+        this._bar_bottom_right = new Group(220, 250);
+        this._bar_top_middle = new Group(230, 0);
+        this._bar_middle_middle = new Group(230,220);
+        this._bar_bottom_middle = new Group(230, 440);
 
         this._light_bar_top_left = true;
         this._light_bar_top_middle = true;
