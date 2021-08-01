@@ -26,4 +26,13 @@ class Square extends Rect{
         this.div.style.width = value+"px";
         this.div.style.height = value+"px";
     }
+
+    get height(){
+        return this._height;
+    }
+
+    get width(){
+        return this._width;
+    }
+
 }
