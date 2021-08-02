@@ -249,6 +249,15 @@ class Shape
         if(this === shape)
             return true;
 
+        if (shape instanceof Group){
+            for (let i = 0; i < shape.shapes.length; i++){
+                if (this.touch(shape.shapes[i])){
+                    return true;
+                }
+            }
+            return false;
+        }
+
         return ((this.x + this.width) >= (shape.x) &&  (this.x) <= (shape.x + shape.width) && (this.y + this.height) >= (shape.y) && (this.y) <= (shape.y + shape.height))
     }
 }

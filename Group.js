@@ -46,4 +46,13 @@ class Group extends Shape{
         return colors
     }
 
+    touch(shape) {
+        for (let i = 0; i < this.shapes.length; i++){
+            if (this.shapes[i].touch(shape)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
