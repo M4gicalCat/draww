@@ -22,6 +22,8 @@ class Shape
         this._visible = true;
         this._accelerationY = 0;
         this._accelerationX = 0;
+        this._text = "";
+        this._text_color = "black";
 
         div.style.position = "absolute";
         div.style.left = "+"+x+"px";
@@ -240,6 +242,31 @@ class Shape
         this._accelerationX = value;
     }
 
+    get text(){
+        return this._text;
+    }
+
+    /**
+     * @param value : string
+     */
+    set text(value){
+        this._text = value;
+        this._div.innerText = value;
+    }
+
+    get text_color(){
+        return this._text_color;
+    }
+
+    /**
+     * Changes the color of the text inside the current Shape. If you want to use hex, dont forget the `#`
+     * @param value : string
+     */
+    set text_color(value){
+        this._text_color = value;
+        this.div.style.color = value;
+    }
+
     /**
      * Returns true if the current Shape touches the given Shape
      * @param shape : Shape
@@ -249,15 +276,19 @@ class Shape
         if(this === shape)
             return true;
 
-        if (shape instanceof Group){
-            for (let i = 0; i < shape.shapes.length; i++){
-                if (this.touch(shape.shapes[i])){
-                    return true;
-                }
-            }
-            return false;
-        }
+        let el1 = this.div
+        let el2 = shape.div
+        el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
+        el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
+        el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
+        el2.offsetRight = el2.offsetLeft + el2.offsetWidth;
 
-        return ((this.x + this.width) >= (shape.x) &&  (this.x) <= (shape.x + shape.width) && (this.y + this.height) >= (shape.y) && (this.y) <= (shape.y + shape.height))
+        return !((el1.offsetBottom < el2.offsetTop) ||
+            (el1.offsetTop > el2.offsetBottom) ||
+            (el1.offsetRight < el2.offsetLeft) ||
+            (el1.offsetLeft > el2.offsetRight))
+
     }
+
+    //TODO: touch_edge()
 }

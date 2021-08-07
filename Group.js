@@ -7,6 +7,8 @@ class Group extends Shape{
     constructor(x, y) {
         super(x, y, "transparent", 0, 0);
         this._shapes = [];
+        this._x = x;
+        this._y = y;
     }
 
     /**
@@ -19,6 +21,16 @@ class Group extends Shape{
             this.canvas.appendShape(shape)
         }
         this.div.appendChild(shape.div)
+    }
+
+    /**
+     * include all the given Shapes in the current Group
+     * @param shapes : [Shape]
+     */
+    appendShapes(shapes){
+        for (let i = 0; i < shapes.length; i++){
+            this.appendShape(shapes[i])
+        }
     }
 
     get shapes(){
@@ -39,11 +51,26 @@ class Group extends Shape{
         let colors = []
         for(let /*Shape*/shape in this._shapes){
             if (!shape instanceof Shape){continue}
-            if(!shape.color in colors){
+            if(!(shape.color in colors) && shape.color !== undefined){
                 colors.push(shape.color);
             }
         }
         return colors
+    }
+
+    /**
+     * Displays an `×` char to hide this Group.
+     */
+    add_close_x(){
+        this._close = new Square(this.width - 20, 20, "transparent", 20);
+        this._close.div.style.fontSize = "20px";
+        this._close.div.innerText = "×";
+        this._close.div.style.cursor = "pointer"
+        this.appendShape(this._close);
+        let that = this
+        this._close.div.addEventListener('click', function (){
+            that.visible = false;
+        })
     }
 
     touch(shape) {
@@ -54,5 +81,4 @@ class Group extends Shape{
         }
         return false;
     }
-
 }
