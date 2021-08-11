@@ -1,4 +1,6 @@
-class Square extends Rect{
+import {Rect} from "./Rect";
+
+export class Square extends Rect{
     constructor(x, y, color, width) {
         super(x, y, color, width, width);
     }

@@ -1,4 +1,6 @@
-class Circle extends Ellipse{
+import {Ellipse} from "./Ellipse";
+
+export class Circle extends Ellipse{
     constructor(x, y, color, width) {
         super(x, y, color, width, width);
         this.div.style.borderRadius = "50%";

@@ -1,4 +1,4 @@
-class Canvas{
+export class Canvas{
     /**
      * @param width : number
      * @param height : number
@@ -6,11 +6,8 @@ class Canvas{
     constructor(width,height)
     {
         let div = document.createElement("div");
-        let nb = 0;
-        while(document.getElementById("canvas_"+nb) !== null) {nb++;}
 
         this._div = div;
-        this._id = div.id;
         this._width = width;
         this._height = height;
         this._color = "";
@@ -27,7 +24,6 @@ class Canvas{
         div.style.position="relative";
         div.style.width = width+"px";
         div.style.height = height+"px";
-        div.id = "canvas_"+nb;
         document.body.appendChild(div);
     }
 
@@ -105,6 +101,16 @@ class Canvas{
         this._shapes.push(shape);
         shape._canvas = this;
         this._div.appendChild(shape.div);
+    }
+
+    /**
+     * Appends all the given Shapes in the current Canvas
+     * @param shapes : [Shape]
+     */
+    appendShapes(shapes){
+        for (let s in shapes){
+            this.appendShape(s);
+        }
     }
     get fps(){
         return this._fps;

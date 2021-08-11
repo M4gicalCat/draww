@@ -1,4 +1,6 @@
-class Triangle extends Shape{
+import {Shape} from "./Shape";
+
+export class Triangle extends Shape{
     constructor(x, y, color, width, height) {
         super(x, y, color, width, height);
 

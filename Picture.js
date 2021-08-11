@@ -1,4 +1,6 @@
-class Picture extends Shape{
+import {Shape} from "./Shape";
+
+export class Picture extends Shape{
     constructor(x, y, width, height, link) {
         super(x, y, "", width, height);
         this._image = document.createElement("img");

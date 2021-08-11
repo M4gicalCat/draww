@@ -1,4 +1,9 @@
-class Digit extends Shape{
+import {Shape} from "./Shape";
+import {Group} from "./Group";
+import {Triangle} from "./Triangle";
+import {Rect} from "./Rect";
+
+export class Digit extends Shape{
     /**
      * @param x : number
      * the x position of the digit

@@ -1,4 +1,6 @@
-class Textfield extends Shape{
+import {Shape} from "./Shape";
+
+export class Textfield extends Shape{
     /**
      * Creates a textfield Shape.
      * @param x : number

@@ -1,4 +1,4 @@
-class Shape
+export class Shape
 {
     constructor(/*number*/x, /*number*/y, /*string*/color, /*number*/width, /*number*/height)
     {
@@ -267,27 +267,83 @@ class Shape
         this.div.style.color = value;
     }
 
+
     /**
      * Returns true if the current Shape touches the given Shape
-     * @param shape : Shape
+     * @param shape : Shape|Shape[]
+     * @param tolerance : number
+     * The tolerance you want. Positive number means it will less detect collision, Negative number means it will more detect collision
      * @return boolean
      */
-    touch(shape){
+    touch(shape, tolerance =0){
         if(this === shape)
             return true;
+        if (shape instanceof Shape)
+            shape = [shape]
+        if (shape instanceof Array)
+        {
+            for (let i = 0; i < shape.length; i++)
+            {
+                let el1 = this.div
+                let el2 = shape[i].div
+                let bodyRect = document.body.getBoundingClientRect(),
+                    el1Rect = el1.getBoundingClientRect(),
+                    el2Rect = el2.getBoundingClientRect()
+                el1Rect.y  = el1Rect.top - bodyRect.top;
+                el2Rect.y  = el2Rect.top - bodyRect.top;
+                el1Rect.x = el1Rect.left - bodyRect.left;
+                el2Rect.x = el2Rect.left - bodyRect.left;
 
-        let el1 = this.div
-        let el2 = shape.div
-        el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
-        el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
-        el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
-        el2.offsetRight = el2.offsetLeft + el2.offsetWidth;
+                /*If the shape is rect-shaped*/
+                if (!shape[i] instanceof Circle && !shape[i] instanceof Ellipse && !shape[i] instanceof Triangle) {
 
-        return !((el1.offsetBottom < el2.offsetTop) ||
-            (el1.offsetTop > el2.offsetBottom) ||
-            (el1.offsetRight < el2.offsetLeft) ||
-            (el1.offsetLeft > el2.offsetRight))
+                    el1Rect.width = this.width
+                    el1Rect.height = this.height
+                    el1Rect.x += tolerance/2
+                    el1Rect.width -= tolerance
+                    el1Rect.y += tolerance/2
+                    el1Rect.height -= tolerance
+                    if (
+                        !((el1Rect.x < el2Rect.x + el2Rect.width) &&
+                            (el1Rect.x + el1Rect.width > el2Rect.x) &&
+                            (el1Rect.y < el2Rect.y + el2Rect.height) &&
+                            (el1Rect.y + el1Rect.height > el2Rect.y))
+                    ) {
+                        return true
+                    }
+                }
+                else if (shape[i] instanceof Circle){
+                    /*More info : https://stackoverflow.com/a/402010/16571292*/
 
+                    /*need the distance between the two respective centers of the Shapes*/
+                    let circle_distance_x = (el2Rect.x + (el2Rect.width/2) + this.border_width) - (el1Rect.x + (el1Rect.width/2) + shape[i].border_width)
+                    let circle_distance_y = (el2Rect.y + (el2Rect.height/2) + this.border_width) - (el1Rect.y + (el1Rect.height/2) + shape[i].border_width)
+
+                    /*make the result positive if negative*/
+                    circle_distance_x *= (circle_distance_x < 0 ? -1 : 1)
+                    circle_distance_y *= (circle_distance_y < 0 ? -1 : 1)
+                    circle_distance_x += tolerance
+                    circle_distance_y += tolerance
+
+                    /*if the circle is too far away*/
+                    if (circle_distance_x > (el1Rect.width/2 + el2Rect.width/2)) { return false; }
+                    if (circle_distance_y > (el1Rect.height/2 + el2Rect.width/2)) { return false; }
+
+                    /*if the circle is close enough*/
+                    console.log(circle_distance_x, circle_distance_y)
+                    if (circle_distance_x <= (el1Rect.width/2)) { return true; }
+                    if (circle_distance_y <= (el1Rect.height/2)) { return true; }
+
+                    /*calculates for the corner of the rectangle*/
+                    let cornerDistance_sq = (circle_distance_x - el1Rect.width/2)**2 +
+                        (circle_distance_y - el1Rect.height/2)**2;
+                    console.log(cornerDistance_sq)
+                    return (cornerDistance_sq <= ((el2Rect.width/2)**2));
+                }
+
+            }
+            return false;
+        }
     }
 
     //TODO: touch_edge()
