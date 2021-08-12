@@ -1,9 +1,9 @@
-import {Shape} from "./Shape";
-import {Group} from "./Group";
-import {Triangle} from "./Triangle";
-import {Rect} from "./Rect";
+import {default as Shape} from "./Shape";
+import {default as Group} from "./Group";
+import {default as Triangle} from "./Triangle";
+import {default as Rect} from "./Rect";
 
-export class Digit extends Shape{
+export default class Digit extends Shape{
     /**
      * @param x : number
      * the x position of the digit

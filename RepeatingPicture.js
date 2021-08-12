@@ -1,4 +1,6 @@
-class RepeatingPicture extends Shape{
+import {default as Shape} from "./Shape"
+
+export default class RepeatingPicture extends Shape{
     /**
      * Creates an image that repeats itself in the desired direction : x or y
      * @param x : number

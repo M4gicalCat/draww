@@ -1,6 +1,6 @@
-import {Rect} from "./Rect";
+import {default as Rect} from "./Rect";
 
-export class Square extends Rect{
+export default class Square extends Rect{
     constructor(x, y, color, width) {
         super(x, y, color, width, width);
     }

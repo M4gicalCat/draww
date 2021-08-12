@@ -1,6 +1,6 @@
-import {Shape} from "./Shape";
+import {default as Shape} from "./Shape";
 
-export class Textfield extends Shape{
+export default class Textfield extends Shape{
     /**
      * Creates a textfield Shape.
      * @param x : number

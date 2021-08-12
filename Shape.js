@@ -1,4 +1,4 @@
-export class Shape
+export default class Shape
 {
     constructor(/*number*/x, /*number*/y, /*string*/color, /*number*/width, /*number*/height)
     {

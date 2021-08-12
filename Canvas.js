@@ -1,4 +1,4 @@
-export class Canvas{
+export default class Canvas{
     /**
      * @param width : number
      * @param height : number

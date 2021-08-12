@@ -1,6 +1,6 @@
-import {Group} from "./Group";
+import {default as Group} from "./Group";
 
-export class Popup extends Group{
+export default class Popup extends Group{
     constructor(width, height, title, text, color) {
         super(window.innerWidth / 2 - width/2 + window.pageXOffset, window.innerHeight/2 - height/2 + window.pageYOffset);
         this._title = title

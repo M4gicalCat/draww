@@ -1,6 +1,6 @@
-import {Group} from "./Group";
-import {Rect} from "./Rect";
-export class BoxError extends Group{
+import {default as Group} from "./Group";
+import {default as Rect} from "./Rect";
+export default class BoxError extends Group{
     constructor(message, width, height) {
         super(window.innerWidth/2 - width / 2 + window.pageXOffset, window.innerHeight/2 - height / 2 + window.pageYOffset);
         this._message = message;
