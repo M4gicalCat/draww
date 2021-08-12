@@ -1,4 +1,5 @@
 import {default as Shape} from "./Shape.js";
+import {default as Square} from "./Square.js";
 
 export default class Group extends Shape{
     /**
@@ -75,9 +76,9 @@ export default class Group extends Shape{
         })
     }
 
-    touch(shape) {
+    touch(shape, tolerance= 0) {
         for (let i = 0; i < this.shapes.length; i++){
-            if (this.shapes[i].touch(shape)){
+            if (this.shapes[i].touch(shape, tolerance)){
                 return true;
             }
         }
