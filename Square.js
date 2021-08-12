@@ -1,4 +1,4 @@
-import {default as Rect} from "./Rect";
+import {default as Rect} from "./Rect.js";
 
 export default class Square extends Rect{
     constructor(x, y, color, width) {

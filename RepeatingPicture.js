@@ -1,4 +1,4 @@
-import {default as Shape} from "./Shape"
+import {default as Shape} from "./Shape.js"
 
 export default class RepeatingPicture extends Shape{
     /**

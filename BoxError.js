@@ -1,5 +1,5 @@
-import {default as Group} from "./Group";
-import {default as Rect} from "./Rect";
+import {default as Group} from "./Group.js";
+import {default as Rect} from "./Rect.js";
 export default class BoxError extends Group{
     constructor(message, width, height) {
         super(window.innerWidth/2 - width / 2 + window.pageXOffset, window.innerHeight/2 - height / 2 + window.pageYOffset);
