@@ -1,3 +1,7 @@
+import {default as Circle} from "./Circle.js";
+import {default as Ellipse} from "./Ellipse.js";
+import {default as Triangle} from "./Triangle.js";
+
 export default class Shape
 {
     constructor(/*number*/x, /*number*/y, /*string*/color, /*number*/width, /*number*/height)
