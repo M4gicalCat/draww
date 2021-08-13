@@ -1,4 +1,4 @@
-import {default as Shape} from "./Shape.js";
+import {Shape} from "./Shape.js";
 import {default as Group} from "./Group.js";
 import {default as Triangle} from "./Triangle.js";
 import {default as Rect} from "./Rect.js";

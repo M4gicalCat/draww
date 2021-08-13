@@ -1,4 +1,4 @@
-import {default as Shape} from "./Shape.js";
+import {Shape} from "./Shape.js";
 
 export default class Picture extends Shape{
     constructor(x, y, width, height, link) {

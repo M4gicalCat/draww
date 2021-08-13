@@ -1,8 +1,7 @@
 import {default as Circle} from "./Circle.js";
-import {default as Ellipse} from "./Ellipse.js";
 import {default as Triangle} from "./Triangle.js";
 
-export default class Shape
+export class Shape
 {
     constructor(/*number*/x, /*number*/y, /*string*/color, /*number*/width, /*number*/height)
     {
@@ -351,4 +350,11 @@ export default class Shape
     }
 
     //TODO: touch_edge()
+}
+
+export class Ellipse extends Shape{
+    constructor(x, y, color, width, height) {
+        super(x, y, color, width, height);
+        this.div.style.borderRadius = "50%";
+    }
 }

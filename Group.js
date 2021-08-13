@@ -1,4 +1,4 @@
-import {default as Shape} from "./Shape.js";
+import {Shape} from "./Shape.js";
 import {default as Square} from "./Square.js";
 
 export default class Group extends Shape{
