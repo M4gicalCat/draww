@@ -333,14 +333,12 @@ export class Shape
                     if (circle_distance_y > (el1Rect.height/2 + el2Rect.width/2)) { return false; }
 
                     /*if the circle is close enough*/
-                    console.log(circle_distance_x, circle_distance_y)
                     if (circle_distance_x <= (el1Rect.width/2)) { return true; }
                     if (circle_distance_y <= (el1Rect.height/2)) { return true; }
 
                     /*calculates for the corner of the rectangle*/
                     let cornerDistance_sq = (circle_distance_x - el1Rect.width/2)**2 +
                         (circle_distance_y - el1Rect.height/2)**2;
-                    console.log(cornerDistance_sq)
                     return (cornerDistance_sq <= ((el2Rect.width/2)**2));
                 }
 
