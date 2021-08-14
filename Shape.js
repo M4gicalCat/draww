@@ -276,11 +276,12 @@ export class Shape
      * @param shape : Shape|Shape[]
      * @param tolerance : number
      * The tolerance you want. Positive number means it will less detect collision, Negative number means it will more detect collision
-     * @return boolean
+     * @return [boolean, Shape?]
+     * Returns true if the current Shape touches the given Shape, and the position of the given Shapes : "right", "down", "left", "up"; ex: [true, "up"]
      */
     touch(shape, tolerance =0){
         if(this === shape)
-            return true;
+            return [true, this];
         if (shape instanceof Shape)
             shape = [shape]
         if (shape instanceof Array)
@@ -298,7 +299,7 @@ export class Shape
                 el2Rect.x = el2Rect.left - bodyRect.left;
 
                 /*If the shape is rect-shaped*/
-                if (!(shape[i].classname === "Circle") && !(shape[i].classname === "Ellipse") && !(shape[i].classname === "Triangle")) {
+                if (!(shape[i].classname === "Circle")/* && !(shape[i].classname === "Ellipse") && !(shape[i].classname === "Triangle")*/) {
 
                     el1Rect.width = this.width
                     el1Rect.height = this.height
@@ -312,7 +313,7 @@ export class Shape
                             (el1Rect.y < el2Rect.y + el2Rect.height) &&
                             (el1Rect.y + el1Rect.height > el2Rect.y))
                     ) {
-                        return true
+                        return [true, shape[i]]
                     }
                 }
                 else if (shape[i].classname === "Circle"){
@@ -333,17 +334,23 @@ export class Shape
                     if (circle_distance_y > (el1Rect.height/2 + el2Rect.width/2)) { return false; }
 
                     /*if the circle is close enough*/
-                    if (circle_distance_x <= (el1Rect.width/2)) { return true; }
-                    if (circle_distance_y <= (el1Rect.height/2)) { return true; }
+                    if (circle_distance_x <= (el1Rect.width/2)) { return [true, shape[i]]; }
+                    if (circle_distance_y <= (el1Rect.height/2)) { return [true, shape[i]]; }
 
                     /*calculates for the corner of the rectangle*/
                     let cornerDistance_sq = (circle_distance_x - el1Rect.width/2)**2 +
                         (circle_distance_y - el1Rect.height/2)**2;
-                    return (cornerDistance_sq <= ((el2Rect.width/2)**2));
+                    return [(cornerDistance_sq <= ((el2Rect.width/2)**2)), shape[i]];
                 }
+                /*else if (shape[i].classname === "Triangle"){
+
+                }
+                else if (shape[i].classname === "Ellipse"){
+
+                }*/
 
             }
-            return false;
+            return [false];
         }
     }
 
