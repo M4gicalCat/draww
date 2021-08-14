@@ -25,4 +25,8 @@ export default class Popup extends Group{
 
         this.add_close_x()
     }
+
+    get classname(){
+        return "Popup"
+    }
 }

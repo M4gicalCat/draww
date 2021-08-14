@@ -35,7 +35,7 @@ square.moveX = move;
 
 You can create a group of Shapes by typing :
 ```js
-let group = new Group(/* x */5, /*y*/ 5);
+let group = new Group(/*x*/5, /*y*/ 5);
 
 group.appendShape(square)
 ```
@@ -44,10 +44,20 @@ Add every shape you want to the group, it's easier to move them or rotate them :
 If you ever need to have a digital clock, then fear not ! The Digit object is there for you!
 
 ```js
-let digit_1 = new Digit(5, 5, "black", 200, 400, 1); //width and height aren't working yet, I need to think
+let digit_1 = new Digit(5, 5, "black", 200, 400, 1); //width and height aren't working yet, I'm gonna fix this
 canvas.appendShape(digit_1);
 ```
-and you have a beautiful 1 in digital.
+
+You can also display Popups and error boxes (BoxError) :
+```js
+let popup = new Popup(/*width*/200, /*height*/500, "TITLE", "The text to display on the popup", "green")
+canvas.appendShape(popup);
+```
+
+You can now add multiple Shape at once using :
+```js
+canvas.appendShapes([Shape1, Shape2, Shape3/*, ...*/])
+```
 
 Don't forget to **always** use the getters / setters to be sure that the shape changes as intended.
 
@@ -58,10 +68,14 @@ All shapes are :
 - Circle
 - Ellipse
 - Picture
+- RepeatingPicture
 - Rect
 - Square
 - Triangle
 - Digit
 - Group
+- TextField
+- Popup
+- BoxError
 
 All colors are css ones, you can change it with hexa, don't forget the `#` before !

@@ -54,4 +54,8 @@ export default class Picture extends Shape{
         return this._height;
     }
 
+    get classname(){
+        return "Picture"
+    }
+
 }

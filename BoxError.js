@@ -21,4 +21,8 @@ export default class BoxError extends Group{
 
         this.add_close_x();
     }
+
+    get classname(){
+        return "BoxError"
+    }
 }

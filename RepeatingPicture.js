@@ -51,4 +51,9 @@ export default class RepeatingPicture extends Shape{
         this._axis = value;
         this.div.style.backgroundRepeat = "repeat-"+value.toLowerCase();
     }
+
+
+    get classname(){
+        return "RepeatingPicture"
+    }
 }

@@ -19,4 +19,8 @@ export default class TextField extends Shape{
         this.width = width
         this.height = height
     }
+
+    get classname(){
+        return "TextField"
+    }
 }

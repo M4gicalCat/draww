@@ -19,4 +19,8 @@ export default class Triangle extends Shape{
         this._color = value;
         this.div.style.borderBottomColor = value;
     }
+
+    get classname(){
+        return "Triangle"
+    }
 }

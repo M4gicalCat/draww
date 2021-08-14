@@ -260,5 +260,10 @@ export default class Digit extends Shape{
         this.light_bar_bottom_middle = value[5]
         this.light_bar_bottom_right = value[6]
     }
+
+
+    get classname(){
+        return "Digit"
+    }
 }
 

@@ -76,6 +76,10 @@ export default class Group extends Shape{
         })
     }
 
+    get classname(){
+        return "Group"
+    }
+
     touch(shape, tolerance= 0) {
         for (let i = 0; i < this.shapes.length; i++){
             if (this.shapes[i].touch(shape, tolerance)){

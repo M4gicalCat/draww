@@ -1,5 +1,3 @@
-import {default as Triangle} from "./Triangle.js";
-
 export class Shape
 {
     constructor(/*number*/x, /*number*/y, /*string*/color, /*number*/width, /*number*/height)
@@ -10,8 +8,8 @@ export class Shape
         this._y = y;
         this._color = color;
         this._border = color;
-        this._border_width = 1
-        this._border_style = "solid";
+        this._border_width = 0
+        this._border_style = "none";
         this._width = width;
         this._height = height;
         this._canvas = "";
@@ -269,6 +267,9 @@ export class Shape
         this.div.style.color = value;
     }
 
+    get classname(){
+        return "Shape";
+    }
 
     /**
      * Returns true if the current Shape touches the given Shape
@@ -297,7 +298,7 @@ export class Shape
                 el2Rect.x = el2Rect.left - bodyRect.left;
 
                 /*If the shape is rect-shaped*/
-                if (!shape[i] instanceof Circle && !shape[i] instanceof Ellipse && !shape[i] instanceof Triangle) {
+                if (!(shape[i].classname === "Circle") && !(shape[i].classname === "Ellipse") && !(shape[i].classname === "Triangle")) {
 
                     el1Rect.width = this.width
                     el1Rect.height = this.height
@@ -314,7 +315,7 @@ export class Shape
                         return true
                     }
                 }
-                else if (shape[i] instanceof Circle){
+                else if (shape[i].classname === "Circle"){
                     /*More info : https://stackoverflow.com/a/402010/16571292*/
 
                     /*need the distance between the two respective centers of the Shapes*/
@@ -349,49 +350,4 @@ export class Shape
     }
 
     //TODO: touch_edge()
-}
-
-export class Ellipse extends Shape{
-    constructor(x, y, color, width, height) {
-        super(x, y, color, width, height);
-        this.div.style.borderRadius = "50%";
-    }
-}
-
-export class Circle extends Ellipse{
-    constructor(x, y, color, width) {
-        super(x, y, color, width, width);
-        this.div.style.borderRadius = "50%";
-    }
-
-    /**
-     * @param value : number
-     */
-    set width(value)
-    {
-        if (isNaN(value))
-            return
-        this._width = value;
-        this._height = value;
-        this.div.style.width = value+"px";
-        this.div.style.height = value+"px";
-    }
-    /**
-     * @param value : number
-     */
-    set height(value)
-    {
-        if(isNaN(value))
-            return
-        this._width = value;
-        this._height = value;
-        this.div.style.width = value+"px";
-        this.div.style.height = value+"px";
-    }
-    get height(){
-        return this._height;
-    }
-    get width(){
-        return this._width
-    }
 }
