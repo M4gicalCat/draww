@@ -82,8 +82,9 @@ export default class Group extends Shape{
 
     touch(shape, tolerance= 0) {
         for (let i = 0; i < this.shapes.length; i++){
-            if (this.shapes[i].touch(shape, tolerance)){
-                return true;
+            let t = this.shapes[i].touch(shape, tolerance);
+            if (t[0]){
+                return t;
             }
         }
         return false;
