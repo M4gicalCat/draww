@@ -284,6 +284,7 @@ export class Shape
             return [true, this];
         if (shape instanceof Shape)
             shape = [shape]
+        let touched_shapes = [false]
         if (shape instanceof Array)
         {
             for (let i = 0; i < shape.length; i++)
@@ -313,7 +314,7 @@ export class Shape
                             (el1Rect.y < el2Rect.y + el2Rect.height) &&
                             (el1Rect.y + el1Rect.height > el2Rect.y))
                     ) {
-                        return [true, shape[i]]
+                        touched_shapes.push(shape[i])
                     }
                 }
                 else if (shape[i].classname === "Circle"){
@@ -330,17 +331,20 @@ export class Shape
                     circle_distance_y += tolerance
 
                     /*if the circle is too far away*/
-                    if (circle_distance_x > (el1Rect.width/2 + el2Rect.width/2)) { return false; }
-                    if (circle_distance_y > (el1Rect.height/2 + el2Rect.width/2)) { return false; }
+                    if (circle_distance_x > (el1Rect.width/2 + el2Rect.width/2)) { continue }
+                    if (circle_distance_y > (el1Rect.height/2 + el2Rect.width/2)) { continue; }
 
                     /*if the circle is close enough*/
-                    if (circle_distance_x <= (el1Rect.width/2)) { return [true, shape[i]]; }
-                    if (circle_distance_y <= (el1Rect.height/2)) { return [true, shape[i]]; }
+                    if (circle_distance_x <= (el1Rect.width/2)) { touched_shapes.push(shape[i]);  continue }
+                    if (circle_distance_y <= (el1Rect.height/2)) { touched_shapes.push(shape[i]); continue }
 
                     /*calculates for the corner of the rectangle*/
                     let cornerDistance_sq = (circle_distance_x - el1Rect.width/2)**2 +
                         (circle_distance_y - el1Rect.height/2)**2;
-                    return [(cornerDistance_sq <= ((el2Rect.width/2)**2)), shape[i]];
+                    if(cornerDistance_sq <= ((el2Rect.width/2)**2))
+                    {
+                        touched_shapes.push(shape[i])
+                    }
                 }
                 /*else if (shape[i].classname === "Triangle"){
 
@@ -350,7 +354,8 @@ export class Shape
                 }*/
 
             }
-            return [false];
+            touched_shapes[0] = touched_shapes.length > 1
+            return touched_shapes;
         }
     }
 
