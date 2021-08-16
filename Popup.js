@@ -1,4 +1,5 @@
 import {default as Group} from "./Group.js";
+import Rect from "./Rect.js";
 
 export default class Popup extends Group{
     constructor(width, height, title, text, color) {
