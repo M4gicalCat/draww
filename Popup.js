@@ -17,8 +17,14 @@ export default class Popup extends Group{
 
         this._popup.border_style = "groove"
         this._popup.div.style.borderRadius = "20px"
+        let div_title = document.createElement("div")
+        div_title.style.padding = width/10+"px"
+        div_title.style.textAlign = "center"
+        div_title.style.width = width;
+        div_title.innerText = title;
+        this._popup.div.appendChild(div_title)
         let div_text = document.createElement("div")
-        div_text.style.padding = width/10+"px"
+        div_text.style.padding = "0 " + (width/10) + " "+ (width/10) + " " + (width/10) +"px"
         div_text.style.width = width;
         div_text.style.textAlign = "center"
         this._popup.div.appendChild(div_text);
