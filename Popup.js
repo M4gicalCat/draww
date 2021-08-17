@@ -22,7 +22,7 @@ export default class Popup extends Group{
         div_title.style.textAlign = "center"
         div_title.style.width = width;
         div_title.innerText = title;
-        this._popup.div.appendChild(div_title)
+        this._popup.div.appendChild(div_title);
         let div_text = document.createElement("div")
         div_text.style.padding = "0 " + (width/10) + " "+ (width/10) + " " + (width/10) +"px"
         div_text.style.width = width;
