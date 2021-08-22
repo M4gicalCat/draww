@@ -2,7 +2,7 @@ import {Shape} from "./Shape.js";
 
 export default class TextField extends Shape{
     /**
-     * Creates a textfield Shape.
+     * Creates a textField Shape.
      * @param x : number
      * @param y : number
      * @param color : string
