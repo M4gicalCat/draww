@@ -65,7 +65,7 @@ export default class Group extends Shape{
      * Displays an `×` char to hide this Group.
      */
     add_close_x(){
-        this._close = new Square(this.width - 20, 20, "transparent", 20);
+        this._close = new Square(this.width + this.border_width - 40, 20, "transparent", 20);
         this._close.div.style.fontSize = "20px";
         this._close.div.innerText = "×";
         this._close.div.style.cursor = "pointer"
