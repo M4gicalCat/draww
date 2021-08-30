@@ -1,6 +1,6 @@
 {
   "name": "draww",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "An easy way to create basics shapes in web.",
   "main": "src/index.js",
   "scripts": {
