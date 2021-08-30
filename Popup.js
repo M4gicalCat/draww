@@ -19,6 +19,7 @@ export default class Popup extends Group{
         this._popup.div.style.borderRadius = "20px"
         let div_title = document.createElement("h1")
         div_title.style.padding = width/10+"px"
+        div_title.style.paddingTop = "5%"
         div_title.style.textAlign = "center"
         div_title.style.width = width;
         div_title.innerText = title;
