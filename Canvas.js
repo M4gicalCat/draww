@@ -109,7 +109,7 @@ export default class Canvas{
      */
     appendShapes(shapes){
         for (let s in shapes){
-            this.appendShape(s);
+            this.appendShape(shapes[s]);
         }
     }
     get fps(){
