@@ -23,7 +23,9 @@ export default class RepeatingPicture extends Shape{
 
         this.div.style.backgroundImage = "url('"+url+"')";
         this.div.style.backgroundRepeat = "repeat" +(axis === "" ? "" : "-" + axis.toLowerCase());
+        if (axis !== ""){
         this.div.style.backgroundSize = "contain"
+    }
         this._x = x;
         this._y = y;
         this._width = width;
