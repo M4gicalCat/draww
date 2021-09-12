@@ -13,16 +13,16 @@ export default class RepeatingPicture extends Shape{
      * The width of the current RepeatingPicture
      * @param height : number
      * The height of the current RepeatingPicture
-     * @param axis : "x"|"y"
-     * The axis of propagation of the picture
+     * @param axis : String
+     * The axis of propagation of the picture ("x" or "y"). default means the picture will repeat in both directions
      */
-    constructor(x, y, url, width, height, axis) {
+    constructor(x, y, url, width, height, axis = "") {
         super(x, y, "transparent", width, height);
         this._url = url;
         this._axis = axis;
 
         this.div.style.backgroundImage = "url('"+url+"')";
-        this.div.style.backgroundRepeat = "repeat-"+axis.toLowerCase();
+        this.div.style.backgroundRepeat = "repeat" +(axis === "" ? "" : "-" + axis.toLowerCase());
         this.div.style.backgroundSize = "contain"
         this._x = x;
         this._y = y;
