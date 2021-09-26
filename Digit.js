@@ -1,9 +1,9 @@
-import {Shape} from "./Shape.js";
-import {Group} from "./Group.js";
-import {Triangle} from "./Triangle.js";
-import {Rect} from "./Rect.js";
+import Shape from "./Shape.js";
+import Group from "./Group.js";
+import Triangle from "./Triangle.js";
+import Rect from "./Rect.js";
 
-export class Digit extends Shape{
+export default class Digit extends Shape{
     /**
      * @param x : number
      * the x position of the digit

@@ -1,6 +1,6 @@
-import {Popup} from "./Popup.js";
+import Popup from "./Popup.js";
 
-export class BoxError extends Popup{
+export default class BoxError extends Popup{
 
     /**
      * Displays a popup to show an error

@@ -1,7 +1,7 @@
-import {Shape} from "./Shape.js";
-import {Square} from "./Square.js";
+import Shape from "./Shape.js";
+import Square from "./Square.js";
 
-export class Group extends Shape{
+export default class Group extends Shape{
     /**
      * Creates a group of objects. Move this group to move all objects around, rotate this group and all objects will rotate around it, keeping the global look
      * @param x : number

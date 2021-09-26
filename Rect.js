@@ -1,6 +1,6 @@
-import {Shape} from "./Shape.js";
+import Shape from "./Shape.js";
 
-export class Rect extends Shape{
+export default class Rect extends Shape{
     /**
      * Creates a rectangle
      * @param x : number

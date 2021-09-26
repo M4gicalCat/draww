@@ -1,6 +1,6 @@
-import {Shape} from "./Shape.js";
+import Shape from "./Shape.js";
 
-export class Picture extends Shape{
+export default class Picture extends Shape{
     /**
      * displays an image
      * @param x : number

@@ -1,7 +1,7 @@
-import {Group} from "./Group.js";
+import Group from "./Group.js";
 import Rect from "./Rect.js";
 
-export class Popup extends Group{
+export default class Popup extends Group{
     /**
      * Displays a popup on the middle of the screen
      * @param width : number

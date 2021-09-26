@@ -1,6 +1,6 @@
-import {Shape} from "./Shape.js";
+import Shape from "./Shape.js";
 
-export class Triangle extends Shape{
+export default class Triangle extends Shape{
     /**
      * Creates a Triangle
      * @param x : number

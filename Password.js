@@ -1,6 +1,6 @@
 import TextField from "./TextField.js";
 
-export class Password extends TextField{
+export default class Password extends TextField{
     /**
      * displays a password input
      * @param x : number

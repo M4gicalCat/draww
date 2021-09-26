@@ -1,4 +1,4 @@
-export class Shape
+export default class Shape
 {
     /**
      * Creates a basic Shape

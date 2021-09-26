@@ -1,6 +1,6 @@
-import {Rect} from "./Rect.js";
+import Rect from "./Rect.js";
 
-export class Square extends Rect{
+export default class Square extends Rect{
     /**
      * Creates a Square
      * @param x : number

@@ -1,6 +1,6 @@
-import {Shape} from "./Shape.js"
+import Shape from "./Shape.js"
 
-export class RepeatingPicture extends Shape{
+export default class RepeatingPicture extends Shape{
     /**
      * Creates an image that repeats itself in the desired direction : x or y, or in all the available space
      * @param x : number

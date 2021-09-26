@@ -1,6 +1,6 @@
-import {Ellipse} from "./Ellipse.js";
+import Ellipse from "./Ellipse.js";
 
-export class Circle extends Ellipse{
+export default class Circle extends Ellipse{
 
     /**
      * Creates a circle
