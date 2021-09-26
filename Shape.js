@@ -1,6 +1,17 @@
 export class Shape
 {
-    constructor(/*number*/x, /*number*/y, /*string*/color, /*number*/width, /*number*/height)
+    /**
+     * Creates a basic Shape
+     * @param x : number
+     * x position (relative to canvas or Group in which the Shape is)
+     * @param y : number
+     * y position (relative to canvas or Group in which the Shape is)
+     * @param color : string
+     * the name of the color, or an hex value with `#` (ex : "red" or "#FF0000")
+     * @param width : number
+     * @param height : number
+     */
+    constructor(x, y, color, width, height)
     {
         let div = document.createElement("div");
 
@@ -15,9 +26,15 @@ export class Shape
         this._canvas = "";
         this._div = div;
         this._rotation = 0;
-        this._glow = false;
-        this._moveX = function (){this.x = this.x};
-        this._moveY = function (){this.y = this.y};
+        this._shadow = {
+            width : 0,
+            height : 0,
+            blur : 0,
+            spread : 0,
+            color : "#000000"
+        };
+        this._moveX = function (){};
+        this._moveY = function (){};
         this._move = true;
         this._visible = true;
         this._accelerationY = 0;
@@ -140,13 +157,28 @@ export class Shape
     }
 
     /**
-     * @param value : boolean
+     * @param s : Object
+     * creates a shadow around the Shape
+     * @example
+     *{
+     *     width : number,
+     *     height : number,
+     *     blur : number,
+     *     spread : number,
+     *     color : string
+     *}
+     *
      */
-    set glow(value){
-        this._glow = value;
+    set shadow(s){
+        this._shadow = s;
+        this.div.style.boxShadow = `${s.width}px ${s.height}px ${s.blur}px ${s.spread}px`;
     }
-    get glow(){
-        return this._glow
+
+    /**
+     * @returns {{color: string, width: number, blur: number, height: number, spread: number}}
+     */
+    get shadow(){
+        return this._shadow
     }
 
     /**
@@ -164,9 +196,16 @@ export class Shape
         this._moveY = f;
     }
 
+    /**
+     * @returns {function}
+     */
     get moveX(){
         return this._moveX;
     }
+
+    /**
+     * @returns {function}
+     */
     get moveY(){
         return this._moveY;
     }
@@ -192,6 +231,9 @@ export class Shape
         this._border_width = Math.round(value)
         this.div.style.borderWidth = Math.round(value)+"px"
     }
+    /**
+     * @returns {number}
+     */
     get border_width(){
         return this._border_width
     }
@@ -204,9 +246,17 @@ export class Shape
         this._border_style = value;
         this.div.style.borderStyle = value;
     }
+
+    /**
+     * @return {string}
+     */
     get border_style(){
         return this._border_style
     }
+
+    /**
+     * @return {boolean}
+     */
     get move(){
         return this._move;
     }
@@ -217,6 +267,10 @@ export class Shape
     set move(value){
         this._move = value;
     }
+
+    /**
+     * @returns {number}
+     */
     get accelerationY(){
         return this._accelerationY;
     }
@@ -229,6 +283,10 @@ export class Shape
             return
         this._accelerationY = value;
     }
+
+    /**
+     * @returns {number}
+     */
     get accelerationX(){
         return this._accelerationX;
     }
@@ -242,6 +300,9 @@ export class Shape
         this._accelerationX = value;
     }
 
+    /**
+     * @return {string}
+     */
     get text(){
         return this._text;
     }
@@ -254,12 +315,15 @@ export class Shape
         this._div.innerText = value;
     }
 
+    /**
+     * @return {string}
+     */
     get text_color(){
         return this._text_color;
     }
 
     /**
-     * Changes the color of the text inside the current Shape. If you want to use hex, dont forget the `#`
+     * Changes the color of the text inside the current Shape. Format : color's name or #hex_code (like #55FF89)
      * @param value : string
      */
     set text_color(value){
@@ -267,6 +331,9 @@ export class Shape
         this.div.style.color = value;
     }
 
+    /**
+     * @return {string}
+     */
     get classname(){
         return "Shape";
     }
@@ -358,6 +425,4 @@ export class Shape
             return touched_shapes;
         }
     }
-
-    //TODO: touch_edge()
 }

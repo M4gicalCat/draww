@@ -77,5 +77,6 @@ All shapes are :
 - TextField
 - Popup
 - BoxError
+- Password
 
-All colors are css ones, you can change it with hexa, don't forget the `#` before !
+All colors are css ones, you can change it with ``hex, don't forget the `#` before !

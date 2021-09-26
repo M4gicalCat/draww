@@ -1,7 +1,18 @@
-import {default as Group} from "./Group.js";
+import {Group} from "./Group.js";
 import Rect from "./Rect.js";
 
-export default class Popup extends Group{
+export class Popup extends Group{
+    /**
+     * Displays a popup on the middle of the screen
+     * @param width : number
+     * @param height : number
+     * @param title : string
+     * the title of the popup
+     * @param text : string
+     * the text displayed in the popup
+     * @param color : string
+     * the color of the border
+     */
     constructor(width, height, title, text, color) {
         super(window.innerWidth / 2 - width/2 + window.pageXOffset, window.innerHeight/2 - height/2 + window.pageYOffset);
         this._title = title
@@ -34,6 +45,9 @@ export default class Popup extends Group{
         this.add_close_x()
     }
 
+    /**
+     * @returns {string}
+     */
     get classname(){
         return "Popup"
     }

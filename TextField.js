@@ -1,8 +1,8 @@
 import {Shape} from "./Shape.js";
 
-export default class TextField extends Shape{
+export class TextField extends Shape{
     /**
-     * Creates a textField Shape.
+     * Creates a text input.
      * @param x : number
      * @param y : number
      * @param color : string
@@ -20,6 +20,9 @@ export default class TextField extends Shape{
         this.height = height
     }
 
+    /**
+     * @return {string}
+     */
     get classname(){
         return "TextField"
     }

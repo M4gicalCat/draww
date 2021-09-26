@@ -1,4 +1,4 @@
-export default class Canvas{
+export class Canvas{
     /**
      * @param width : number
      * @param height : number
@@ -7,6 +7,7 @@ export default class Canvas{
     {
         let div = document.createElement("div");
 
+        this._id = ""
         this._div = div;
         this._width = width;
         this._height = height;
@@ -27,6 +28,9 @@ export default class Canvas{
         document.body.appendChild(div);
     }
 
+    /**
+     * @return {number}
+     */
     get width() {
         return this._width;
     }
@@ -39,6 +43,10 @@ export default class Canvas{
         this._width = value;
         this._div.style.width = value + "px";
     }
+
+    /**
+     * @return {number}
+     */
     get height() {
         return this._height;
     }
@@ -51,8 +59,19 @@ export default class Canvas{
         this._height = value;
         this._div.style.height = value + "px";
     }
+
+    /**
+     * @return {string}
+     */
     get id() {
         return this._id;
+    }
+
+    /**
+     * @param value : string
+     */
+    set id(value){
+        this._div.id = value;
     }
 
     /**
@@ -62,6 +81,10 @@ export default class Canvas{
         this._color = value;
         this._div.style.backgroundColor = value.toString();
     }
+
+    /**
+     * @return {Shape[]}
+     */
     get shapes(){
         return this._shapes;
     }
@@ -89,6 +112,10 @@ export default class Canvas{
             clearInterval(that._anim)
         }
     }
+
+    /**
+     * @return {boolean}
+     */
     get animated(){
         return this._animated;
     }
@@ -105,13 +132,17 @@ export default class Canvas{
 
     /**
      * Appends all the given Shapes in the current Canvas
-     * @param shapes : [Shape]
+     * @param shapes : Shape[]
      */
     appendShapes(shapes){
         for (let s in shapes){
             this.appendShape(shapes[s]);
         }
     }
+
+    /**
+     * @return {number}
+     */
     get fps(){
         return this._fps;
     }
@@ -133,9 +164,17 @@ export default class Canvas{
         this.animated = true
 
     }
+
+    /**
+     * @return {number}
+     */
     get frame(){
         return this._frame;
     }
+
+    /**
+     * @return {number}
+     */
     get gravity(){
         return this._gravity;
     }
@@ -149,6 +188,10 @@ export default class Canvas{
             return
         this._gravity = value;
     }
+
+    /**
+     * @return {function}
+     */
     get function_to_animate(){
         return this._function_to_animate;
     }

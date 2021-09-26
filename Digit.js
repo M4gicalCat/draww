@@ -1,9 +1,9 @@
 import {Shape} from "./Shape.js";
-import {default as Group} from "./Group.js";
-import {default as Triangle} from "./Triangle.js";
-import {default as Rect} from "./Rect.js";
+import {Group} from "./Group.js";
+import {Triangle} from "./Triangle.js";
+import {Rect} from "./Rect.js";
 
-export default class Digit extends Shape{
+export class Digit extends Shape{
     /**
      * @param x : number
      * the x position of the digit
@@ -16,7 +16,7 @@ export default class Digit extends Shape{
      * @param height : number
      * the height of the digit
      * @param number : number
-     * the digit to write
+     * the digit to display
      */
     constructor(x, y, color, width, height, number) {
         super(x, y, color, width, height);
@@ -55,16 +55,25 @@ export default class Digit extends Shape{
 
     }
 
+    /**
+     * @param value : string
+     */
     set color(value){
+        for (let i = 0; i < this._group.shapes.length; i++){
+            this._group.shapes[i].color = value;
+        }
     }
 
+    /**
+     * @return {number}
+     */
     get number(){
         return this._number;
     }
 
     /**
      * @param value : number
-     * The length must be 1, no more, no less
+     * value must be between 0 and 9
      */
     set number(value){
         if (!isNaN(value) && value.toString().length === 1){
@@ -104,6 +113,9 @@ export default class Digit extends Shape{
         }
     }
 
+    /**
+     * creates all the bars.
+     */
     init_bars()
     {
         let rect_top_left = new Rect(0, 20, this._color, 40, 160)
@@ -160,10 +172,16 @@ export default class Digit extends Shape{
         this._bar_bottom_middle.rotate(90)
     }
 
+    /**
+     * @return {boolean}
+     */
     get light_bar_top_left() {
         return this._light_bar_top_left;
     }
 
+    /**
+     * @param value : boolean
+     */
     set light_bar_top_left(value) {
         this._light_bar_top_left = value;
         if(value){
@@ -173,10 +191,16 @@ export default class Digit extends Shape{
         }
     }
 
+    /**
+     * @return {boolean}
+     */
     get light_bar_top_middle() {
         return this._light_bar_top_middle;
     }
 
+    /**
+     * @param value : boolean
+     */
     set light_bar_top_middle(value) {
         this._light_bar_top_middle = value;
         if(value){
@@ -189,7 +213,9 @@ export default class Digit extends Shape{
     get light_bar_top_right() {
         return this._light_bar_top_right;
     }
-
+    /**
+     * @param value : boolean
+     */
     set light_bar_top_right(value) {
         this._light_bar_top_right = value;
         if(value){
@@ -202,7 +228,9 @@ export default class Digit extends Shape{
     get light_bar_middle_middle() {
         return this._light_bar_middle_middle;
     }
-
+    /**
+     * @param value : boolean
+     */
     set light_bar_middle_middle(value) {
         this._light_bar_middle_middle = value;
         if(value){
@@ -215,7 +243,9 @@ export default class Digit extends Shape{
     get light_bar_bottom_left() {
         return this._light_bar_bottom_left;
     }
-
+    /**
+     * @param value : boolean
+     */
     set light_bar_bottom_left(value) {
         this._light_bar_bottom_left = value;
         if(value){
@@ -228,7 +258,9 @@ export default class Digit extends Shape{
     get light_bar_bottom_middle() {
         return this._light_bar_bottom_middle;
     }
-
+    /**
+     * @param value : boolean
+     */
     set light_bar_bottom_middle(value) {
         this._light_bar_bottom_middle = value;
         if(value){
@@ -241,7 +273,9 @@ export default class Digit extends Shape{
     get light_bar_bottom_right() {
         return this._light_bar_bottom_right;
     }
-
+    /**
+     * @param value : boolean
+     */
     set light_bar_bottom_right(value) {
         this._light_bar_bottom_right = value;
         if(value){
@@ -251,6 +285,10 @@ export default class Digit extends Shape{
         }
     }
 
+    /**
+     * lights the bars. Order : left to right and top to bottom
+     * @param value : boolean[]
+     */
     set light_bars(value){
         this.light_bar_top_left = value[0]
         this.light_bar_top_middle = value[1]
@@ -261,7 +299,9 @@ export default class Digit extends Shape{
         this.light_bar_bottom_right = value[6]
     }
 
-
+    /**
+     * @return {string}
+     */
     get classname(){
         return "Digit"
     }

@@ -1,7 +1,7 @@
 import {Shape} from "./Shape.js";
-import {default as Square} from "./Square.js";
+import {Square} from "./Square.js";
 
-export default class Group extends Shape{
+export class Group extends Shape{
     /**
      * Creates a group of objects. Move this group to move all objects around, rotate this group and all objects will rotate around it, keeping the global look
      * @param x : number
@@ -20,7 +20,7 @@ export default class Group extends Shape{
      */
     appendShape(shape){
         this._shapes.push(shape);
-        if (this.canvas !== ""){
+        if (this.canvas.classname === "Canvas"){
             this.canvas.appendShape(shape)
         }
         this.div.appendChild(shape.div)
@@ -36,10 +36,16 @@ export default class Group extends Shape{
         }
     }
 
+    /**
+     * @return {Shape[]}
+     */
     get shapes(){
         return this._shapes;
     }
 
+    /**
+     * @param value : string
+     */
     set color(value){
         for (let s = 0; s < this._shapes.length; s++){
             this._shapes[s].color = value;
@@ -48,12 +54,12 @@ export default class Group extends Shape{
 
     /**
      * Returns an array of all the current Group's Shapes colors
-     * @return {*[]}
+     * @return {string[]}
      */
     get color(){
         let colors = []
-        for(let /*Shape*/shape in this._shapes){
-            if (!shape instanceof Shape){continue}
+        for(let shape in this.shapes){
+            if (!shape instanceof Shape || !shape.hasOwnProperty("color")){continue}
             if(!(shape.color in colors) && shape.color !== undefined){
                 colors.push(shape.color);
             }
@@ -76,10 +82,18 @@ export default class Group extends Shape{
         })
     }
 
+    /**
+     * @return {string}
+     */
     get classname(){
         return "Group"
     }
 
+    /**
+     * @param shape : Shape|Shape[]
+     * @param tolerance : number
+     * @return {[boolean, Shape[]]}
+     */
     touch(shape, tolerance= 0) {
         for (let i = 0; i < this.shapes.length; i++){
             let t = this.shapes[i].touch(shape, tolerance);
@@ -87,6 +101,6 @@ export default class Group extends Shape{
                 return t;
             }
         }
-        return false;
+        return [false];
     }
 }

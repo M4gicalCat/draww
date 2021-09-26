@@ -1,6 +1,13 @@
-import {default as Rect} from "./Rect.js";
+import {Rect} from "./Rect.js";
 
-export default class Square extends Rect{
+export class Square extends Rect{
+    /**
+     * Creates a Square
+     * @param x : number
+     * @param y : number
+     * @param color : string
+     * @param width : number
+     */
     constructor(x, y, color, width) {
         super(x, y, color, width, width);
     }
@@ -29,14 +36,23 @@ export default class Square extends Rect{
         this.div.style.height = value+"px";
     }
 
+    /**
+     * @return {number}
+     */
     get height(){
         return this._height;
     }
 
+    /**
+     * @return {number}
+     */
     get width(){
         return this._width;
     }
 
+    /**
+     * @return {string}
+     */
     get classname(){
         return "Square"
     }

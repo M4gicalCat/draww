@@ -6,6 +6,9 @@ export class Ellipse extends Shape{
         this.div.style.borderRadius = "50%";
     }
 
+    /**
+     * @return {string}
+     */
     get classname(){
         return "Ellipse"
     }
