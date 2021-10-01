@@ -171,7 +171,7 @@ export default class Shape
      */
     set shadow(s){
         this._shadow = s;
-        this.div.style.boxShadow = `${s.width}px ${s.height}px ${s.blur}px ${s.spread}px`;
+        this.div.style.boxShadow = `${s.width}px ${s.height}px ${s.blur}px ${s.spread}px ${s.color}`;
     }
 
     /**
@@ -214,12 +214,20 @@ export default class Shape
      * @param value : boolean
      */
     set visible(value){
+        this._visible = value;
         if(value){
             this.div.style.display = "inline"
         }
         else{
             this.div.style.display = "none"
         }
+    }
+
+    /**
+     * @return {boolean}
+     */
+    get visible(){
+        return this._visible;
     }
 
     /**
