@@ -364,40 +364,30 @@ export default class Shape
         {
             for (let i = 0; i < shape.length; i++)
             {
-                let el1 = this.div
-                let el2 = shape[i].div
-                let bodyRect = document.body.getBoundingClientRect(),
-                    el1Rect = el1.getBoundingClientRect(),
-                    el2Rect = el2.getBoundingClientRect()
-                el1Rect.y  = el1Rect.top - bodyRect.top;
-                el2Rect.y  = el2Rect.top - bodyRect.top;
-                el1Rect.x = el1Rect.left - bodyRect.left;
-                el2Rect.x = el2Rect.left - bodyRect.left;
 
                 /*If the shape is rect-shaped*/
                 if (!(shape[i].classname === "Circle")/* && !(shape[i].classname === "Ellipse") && !(shape[i].classname === "Triangle")*/) {
-
-                    el1Rect.width = this.width
-                    el1Rect.height = this.height
-                    el1Rect.x += tolerance/2
-                    el1Rect.width -= tolerance
-                    el1Rect.y += tolerance/2
-                    el1Rect.height -= tolerance
+                    let s = shape[i]
                     if (
-                        !((el1Rect.x < el2Rect.x + el2Rect.width) &&
-                            (el1Rect.x + el1Rect.width > el2Rect.x) &&
-                            (el1Rect.y < el2Rect.y + el2Rect.height) &&
-                            (el1Rect.y + el1Rect.height > el2Rect.y))
+                        s.x <= (this.x + this.width + tolerance) &&
+                        s.x + s.width >= (this.x - tolerance) &&
+                        s.y <= (this.y + this.height + tolerance) &&
+                        s.y + s.height >= (this.y - tolerance)
                     ) {
                         touched_shapes.push(shape[i])
                     }
                 }
+
                 else if (shape[i].classname === "Circle"){
                     /*More info : https://stackoverflow.com/a/402010/16571292*/
-
+                    let s = shape[i]
                     /*need the distance between the two respective centers of the Shapes*/
-                    let circle_distance_x = (el2Rect.x + (el2Rect.width/2) + this.border_width) - (el1Rect.x + (el1Rect.width/2) + shape[i].border_width)
-                    let circle_distance_y = (el2Rect.y + (el2Rect.height/2) + this.border_width) - (el1Rect.y + (el1Rect.height/2) + shape[i].border_width)
+                    let tw = this.width/2,
+                        th = this.height/2,
+                        sw = s.width/2,
+                        sh = s.height/2
+                    let circle_distance_x = this.x + tw - s.x - sw
+                    let circle_distance_y = this.y + th - s.y - sh
 
                     /*make the result positive if negative*/
                     circle_distance_x *= (circle_distance_x < 0 ? -1 : 1)
@@ -407,17 +397,17 @@ export default class Shape
                     circle_distance_y += tolerance
 
                     /*if the circle is too far away*/
-                    if (circle_distance_x > (el1Rect.width/2 + el2Rect.width/2)) { continue }
-                    if (circle_distance_y > (el1Rect.height/2 + el2Rect.width/2)) { continue; }
+                    if (circle_distance_x > (tw + sw))  continue
+                    if (circle_distance_y > (th + sh)) continue
 
                     /*if the circle is close enough*/
-                    if (circle_distance_x <= (el1Rect.width/2)) { touched_shapes.push(shape[i]);  continue }
-                    if (circle_distance_y <= (el1Rect.height/2)) { touched_shapes.push(shape[i]); continue }
+                    if (circle_distance_x <= (tw)) { touched_shapes.push(s);  continue }
+                    if (circle_distance_y <= (th)) { touched_shapes.push(s); continue }
 
                     /*calculates for the corner of the rectangle*/
-                    let cornerDistance_sq = (circle_distance_x - el1Rect.width/2)**2 +
-                        (circle_distance_y - el1Rect.height/2)**2;
-                    if(cornerDistance_sq <= ((el2Rect.width/2)**2))
+                    let cornerDistance_sq = (circle_distance_x - tw)**2 +
+                        (circle_distance_y - th)**2;
+                    if(cornerDistance_sq <= (sw * sw))
                     {
                         touched_shapes.push(shape[i])
                     }

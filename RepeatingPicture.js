@@ -7,7 +7,7 @@ export default class RepeatingPicture extends Shape{
      * The x position of the current RepeatingPicture
      * @param y : number
      * The y position of the current RepeatingPicture
-     * @param url : url
+     * @param url : string
      * The url of the picture to display
      * @param width : number
      * The width of the current RepeatingPicture
@@ -33,14 +33,14 @@ export default class RepeatingPicture extends Shape{
     }
 
     /**
-     * @returns {url}
+     * @returns {string}
      */
     get url() {
         return this._url;
     }
 
     /**
-     * @param value : url
+     * @param value : string
      */
     set url(value) {
         this._url = value;
