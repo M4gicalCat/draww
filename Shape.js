@@ -402,6 +402,7 @@ export default class Shape
                     /*make the result positive if negative*/
                     circle_distance_x *= (circle_distance_x < 0 ? -1 : 1)
                     circle_distance_y *= (circle_distance_y < 0 ? -1 : 1)
+
                     circle_distance_x += tolerance
                     circle_distance_y += tolerance
 
